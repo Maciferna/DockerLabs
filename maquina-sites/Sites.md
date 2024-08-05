@@ -1,6 +1,6 @@
 Hoy haremos la maquina Sites de [Dockerlabs](https://dockerlabs.es)
 
-![autor](/home/macimo/Documents/Dockerlabs/maquina-sites/imagenes/autor.png)
+![autor](./imagenes/autor.png)
 
 Autor: [ElPingüinoDeMario](https://www.youtube.com/@ElPinguinoDeMario)
 
@@ -67,7 +67,7 @@ python3 php_filter_chain_generator.py --chain "<?php system('comando que queramo
 ```
 
 Estuve un rato probando en subir un archivo y enviarme una reverse shell pero finalmente la solución fue mucho mas simple ya que se encontraba un archivo llamado "archivitotraviesito" el cual tenia lo siguiente:
-![archivitotraviesito](/home/macimo/Documents/Dockerlabs/maquina-sites/imagenes/archivitotraviesito.png)
+![archivitotraviesito](./imagenes/archivitotraviesito.png)
 
 Por lo que ya tenemos la contraseña del ssh(el mensaje no nos dice el usuario pero como nosotros vimos el "/etc/passwd" y sabemos que hay uno llamado chocolate, pero para confirmar podríamos usar hydra o medusa dependiendo de los gustos). Nos conectamos por ssh con usuario "chocolate" y contraseña "lapasswordmasmolonadelacity" y listo, estamos dentro.
 
@@ -100,7 +100,7 @@ bash
 
 y listo. SOMOS ROOT
 
-![root](/home/macimo/Documents/Dockerlabs/maquina-sites/imagenes/root.png)
+![root](./imagenes/root.png)
 
 Opinión¿?:
 
