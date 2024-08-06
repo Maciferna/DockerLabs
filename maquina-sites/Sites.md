@@ -52,11 +52,11 @@ No se encuentra nada interesante así que continuaremos entrando desde el navega
 
 #### PUERTO 80:
 
-![puerto80](/home/macimo/Documents/Dockerlabs/maquina-sites/imagenes/puerto80.png)
+![puerto80](./imagenes/puerto80.png)
 
 Luego de estar leyendo la página veo que trata como de un "foro" el cual explica un poco de la vulnerabilidad LFI. Revisé el código fuente y no encontré nada pero por probar antes de usar feroxbuster/gobuster se me ocurrió entrar a un archivo que nombraba en la "publicación", el cual se llama "vulnerable.php". Resulta que si es un archivo y ya no nos hace falta usar feroxbuster/gobuster ; nos dice lo siguiente:
 
-![vulnerablePHP](/home/macimo/Documents/Dockerlabs/maquina-sites/imagenes/vulnerablePHP.png)
+![vulnerablePHP](./imagenes/vulnerablePHP.png)
 
 Nos dice que le demos un "page" o "username", viendo que la extensión del archivo es '.php' podemos probar poner '?page=' o '?username=' e introducir algo, si en "username" ponemos cualquier cosa nos da la bienvenida pero en "page" se encuentra lo interesante ya que podremos hacer un LFI, y leer archivos del sistema. Primero probé poner "../../../../../../../../../etc/passwd" como algo típico pero quedaba en blanco, así que probé con "/etc/passwd" y ya me mostró el archivo, por lo que confirmamos que trata de un LFI.
 
