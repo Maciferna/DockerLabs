@@ -222,6 +222,6 @@ Le damos permiso de ejecución con `chmod 600 id_rsa` y finalmente la usamos con
 
 
 
-por si te interesa:
+Por si te interesa:
 
-[IG](https://instagram.com/macim0_)
+[INSTAGRAM](https://instagram.com/macim0_)
