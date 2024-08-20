@@ -1,4 +1,10 @@
-Dificultad: Muy facil
+Maquina pntopntobarra de [DockerLabs](https://dockerlabs.es)
+
+![dock](./imagenes/dock.png)
+
+Autor: yo ([maciiii___](https://instagram.com/macim0_))
+
+Dificultad: Fácil
 
 # INTRUSION
 
