@@ -34,13 +34,7 @@ Vemos el puerto 22 y 80 abierto, nada interesante por lo que iremos directo al p
 
 ![80](./imagenes/80.png)
 
-Parece un tipo de advertencia y nos nombra un "LeFvIrus", si vemos las letras en mayuscula seria "LFI", por lo que podria tratar de un `Local File Inclusion`, sabiendo eso podemos entrar a donde dice "Ejemplos de computadoras infectadas" y nos redirige a un ".php" que dice `Error al cargar el archivo.`, sabiendo que puede tratar de un LFI podriamos fuzzear parametros con el siguiente comando:
-
-```css
-wfuzz --hl=16 -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt "http://172.17.0.2/ejemplos.php?FUZZ=../../../../etc/passwd"
-```
-
-Al ejecutarlo vemos que el parametro "images" nos permite leer el `/etc/passwd`, ahora entramos al navegador y ponemos el parametro mas "../../../../etc/passwd". Como hay un usuario llamado "nico" podemos ver si se puede leer su clave privada de ssh, simplemente ponemos "../../../../home/nico/.ssh/id_rsa" y listo. Al enviarlo podemos ver la clave privada de el usuario nico. Nos copiamos la clave a nuestra maquina local a un archivo llamado "id_rsa", le damos permisos con `chmod 600 id_rsa` y luego entramos sin contraseña usando `ssh -i id_rsa nico@172.17.0.2`.
+Parece un tipo de advertencia y nos nombra un "LeFvIrus", si vemos las letras en mayuscula seria "LFI", por lo que podria tratar de un `Local File Inclusion`, sabiendo eso podemos entrar a donde dice "Ejemplos de computadoras infectadas" y nos redirige a un ".php" que dice `Error al cargar el archivo.` pero en la barra de busqueda pone `http://172.17.0.2/ejemplos.php?images=./ejemplo1.png` por lo que cambiamos el "./ejemplo1.png" por `/etc/passwd`. Como hay un usuario llamado "nico" podemos ver si se puede leer su clave privada de ssh, simplemente ponemos "/home/nico/.ssh/id_rsa" y listo. Al enviarlo podemos ver la clave privada de el usuario nico. Nos copiamos la clave a nuestra maquina local a un archivo llamado "id_rsa", le damos permisos con `chmod 600 id_rsa` y luego entramos sin contraseña usando `ssh -i id_rsa nico@172.17.0.2`.
 
 # ESCALADA DE PRIVILEGIOS
 
