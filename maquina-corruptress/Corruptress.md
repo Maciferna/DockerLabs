@@ -215,13 +215,3 @@ sudo -u root /usr/bin/puttygen id_rsa -o /root/.ssh/authorized_keys -O public-op
 Le damos permiso de ejecución con `chmod 600 id_rsa` y finalmente la usamos con `ssh -i id_rsa root@localhost` y listo, somos root
 
 ![root](./imagenes/root.png)
-
-
-
-
-
-
-
-Por si te interesa:
-
-[INSTAGRAM](https://instagram.com/macim0_)

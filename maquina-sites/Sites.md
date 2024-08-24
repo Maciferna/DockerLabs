@@ -101,33 +101,3 @@ bash
 y listo. SOMOS ROOT
 
 ![root](./imagenes/root.png)
-
-Opinión¿?:
-
-Buena maquina para aprender un poco de LFI y muy entretenida
-
-
-
-
-
-
-
-
-
-
-
-Por si te interesa:
-
-[IG](https://instagram.com/macim0_)
-
-
-
-
-
-
-
-
-
-Agradecimientos:
-
-[messi](https://instagram.com/leomessi)

@@ -256,4 +256,3 @@ Le damos permisos al script con `chmod +x /tmp/script.sh` y ahora simplemente ej
 
 Gracias por leer.
 
-Si te interesa [INSTAGRAM](https://instagram.com/macim0_)

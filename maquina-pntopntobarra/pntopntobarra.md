@@ -49,9 +49,3 @@ y listo, somos root:
 ![root](./imagenes/root.png)
 
 Gracias.....
-
-
-
-
-
-[INSTAGRAM](https://instagram.com/macim0_)

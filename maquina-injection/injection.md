@@ -63,9 +63,3 @@ y listo, somos ROOT.
 
 
 Gracias por leer.
-
-
-
-Si te interesa:
-
-[INSTAGRAM](https://instagram.com/macim0_)

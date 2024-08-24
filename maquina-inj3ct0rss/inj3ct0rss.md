@@ -108,10 +108,3 @@ Esto nos dará la clave privada del ssh del usuario root, ahora nos la guardarem
 
 Esta maquina tiene flags. Chau....
 
-
-
-
-
-
-
-[INSTAGRAM](https://instagram.com/macim0_)

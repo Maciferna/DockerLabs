@@ -196,14 +196,3 @@ Como vemos, esta el binario `find`, si buscamos en [GTFObins](https://gtfobins.g
 Al usarlo escalamos a root.
 
 ![root](./imagenes/root.png)
-
-
-
-
-
-
-
-Por si te interesa:
-
-[INSTAGRAM](https://instagram.com/macim0_)
-

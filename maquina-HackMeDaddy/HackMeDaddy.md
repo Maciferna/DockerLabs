@@ -218,4 +218,3 @@ sudo php -r "system('$CMD');"
 
 Muy buena maquina, adiós...
 
-Mi [instagram](https://instagram.com/macim0_)
