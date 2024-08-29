@@ -245,3 +245,5 @@ echo "luisillo ALL=(ALL:ALL) ALL" | sudo dd of=$LFILE
 Una vez hecho esto ya tendremos permisos root para todos los comandos, y solo escalamos ejecutando `sudo su` y poniendo la contraseña de luisillo.
 
 ![root](./img/root.png)
+
+Gracias por leer.
