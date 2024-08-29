@@ -1,11 +1,8 @@
 Solo subo mis writeups de algunas maquinas de [DockerLabs](https://dockerlabs.es)
 
-
-
-[Instagram](https://instagram.com/macim0_)
-
 ¿Como desplegar las maquinas?
- Primero descomprimimos el `.zip` con la maquina, para hacerlo solo debemos instalar zip y luego ejecutar el comando.
+
+ Primero hay que descomprimir el `.zip` con la maquina, para hacerlo solo debemos instalar `zip` con apt y luego ejecutar el comando.
 
 ```css
 sudo apt install zip
@@ -24,8 +21,13 @@ sudo bash auto_deploy.sh <maquina>.tar
 ```
 
 
-para confirmar que esta desplegada:
+Para confirmar que esta desplegada:
 
 ```css
 ping 172.17.0.2 #o la ip que nos den
 ```
+
+
+[ElPingüinoDeMario](https://youtube.com/@ElPinguinoDeMario)
+Mi [Instagram](https://instagram.com/macim0_)
+
