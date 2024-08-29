@@ -1,7 +1,4 @@
-Hago maquinas para aprender y writeups para todos los que no les sale(tampoco soy tan bueno en esto)
+Subo mis writeups de algunas maquinas de [DockerLabs](https://dockerlabs.es)
 
-[IG](https://instagram.com/macim0_)
- 
- 
- 
-[DockerLabs](https://dockerlabs.es)
+[Instagram](https://instagram.com/macim0_)
+
