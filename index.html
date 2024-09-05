@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CTF Writeups</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -34,36 +35,56 @@
             font-weight: bold;
             font-size: 18px;
         }
+        #content {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>CTF Writeups</h1>
     <div class="container">
-        <div class="card"><a href="./maquina-0xc0ffee/0xc0ffee.md">Maquina 0xc0ffee</a></div>
-        <div class="card"><a href="./maquina_404-not-found/404-not-found.md">Maquina 404-not-found</a></div>
-        <div class="card"><a href="./maquina-backend/backend.md">Maquina Backend</a></div>
-        <div class="card"><a href="./maquina-borazuwarahctf/borazuwarahctf.md">Maquina Borazuwarahctf</a></div>
-        <div class="card"><a href="./maquina-candy/candy.md">Maquina Candy</a></div>
-        <div class="card"><a href="./maquina-corruptress/Corruptress.md">Maquina Corruptress</a></div>
-        <div class="card"><a href="./maquina-crackoff/crackoff.md">Maquina Crackoff</a></div>
-        <div class="card"><a href="./maquina-dance-samba/dance-samba.md">Maquina Dance Samba</a></div>
-        <div class="card"><a href="./maquina-debugme/debugme.md">Maquina Debugme</a></div>
-        <div class="card"><a href="./maquina-HackMeDaddy/HackMeDaddy.md">Maquina HackMeDaddy</a></div>
-        <div class="card"><a href="./maquina-inj3ct0rss/inj3ct0rss.md">Maquina Inj3ct0rss</a></div>
-        <div class="card"><a href="./maquina-injection/injection.md">Maquina Injection</a></div>
-        <div class="card"><a href="./maquina-lfi.elf/lfi.elf.md">Maquina LFI.ELF</a></div>
-        <div class="card"><a href="./maquina-mapache2/mapache2.md">Maquina Mapache2</a></div>
-        <div class="card"><a href="./maquina-mirame/MIRAME.md">Maquina MIRAME</a></div>
-        <div class="card"><a href="./maquina-pntopntobarra/pntopntobarra.md">Maquina Pntopntobarra</a></div>
-        <div class="card"><a href="./maquina-pressenter/pressenter.md">Maquina Pressenter</a></div>
-        <div class="card"><a href="./maquina-r00tless/r00tless.md">Maquina R00tless</a></div>
-        <div class="card"><a href="./maquina-rubiks/rubiks.md">Maquina Rubiks</a></div>
-        <div class="card"><a href="./maquina-showtime/SHOWTIME.md">Maquina Showtime</a></div>
-        <div class="card"><a href="./maquina-sites/Sites.md">Maquina Sites</a></div>
-        <div class="card"><a href="./maquina-stranger/stranger.md">Maquina Stranger</a></div>
-        <div class="card"><a href="./maquina-vulnerame/vulnerame.md">Maquina Vulnerame</a></div>
-        <div class="card"><a href="./maquina-vulnvault/vulnvault.md">Maquina Vulnvault</a></div>
-        <div class="card"><a href="./maquina-winterfell/Winterfell.md">Maquina Winterfell</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-0xc0ffee/0xc0ffee.md')">Maquina 0xc0ffee</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina_404-not-found/404-not-found.md')">Maquina 404-not-found</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-backend/backend.md')">Maquina Backend</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-borazuwarahctf/borazuwarahctf.md')">Maquina Borazuwarahctf</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-candy/candy.md')">Maquina Candy</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-corruptress/Corruptress.md')">Maquina Corruptress</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-crackoff/crackoff.md')">Maquina Crackoff</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-dance-samba/dance-samba.md')">Maquina Dance Samba</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-debugme/debugme.md')">Maquina Debugme</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-HackMeDaddy/HackMeDaddy.md')">Maquina HackMeDaddy</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-inj3ct0rss/inj3ct0rss.md')">Maquina Inj3ct0rss</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-injection/injection.md')">Maquina Injection</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-lfi.elf/lfi.elf.md')">Maquina LFI.elf</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-mapache2/mapache2.md')">Maquina Mapache2</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-mirame/MIRAME.md')">Maquina Mirame</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-pntopntobarra/pntopntobarra.md')">Maquina Pntopntobarra</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-pressenter/pressenter.md')">Maquina Pressenter</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-r00tless/r00tless.md')">Maquina R00tless</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-rubiks/rubiks.md')">Maquina Rubiks</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-showtime/SHOWTIME.md')">Maquina Showtime</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-sites/Sites.md')">Maquina Sites</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-stranger/stranger.md')">Maquina Stranger</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-vulnerame/vulnerame.md')">Maquina Vulnerame</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-vulnvault/vulnvault.md')">Maquina Vulnvault</a></div>
+        <div class="card"><a href="#" onclick="loadMarkdown('./maquina-winterfell/Winterfell.md')">Maquina Winterfell</a></div>
     </div>
+
+    <div id="content"></div>
+
+    <script>
+        function loadMarkdown(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('content').innerHTML = marked(text);
+                })
+                .catch(error => console.error('Error al cargar el archivo Markdown:', error));
+        }
+    </script>
 </body>
 </html>
+
