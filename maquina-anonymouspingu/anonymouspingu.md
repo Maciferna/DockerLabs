@@ -98,4 +98,4 @@ Finished
 
 Como podemos ver estamos en la propia página, por lo que teniendo en cuenta que la carpeta `upload` es accesible desde el navegador y que podemos escribir en ella con ftp, tenemos que subir a traves de ftp un php malicioso que nos permita ejecutar comandos dentro de la máquina. Para esto podemos usar el script que hice para esta máquina:
 
-[script](https://github.com/Maciferna/Dockerlabs/blob/main/maquina-anonymouspingu/scrips/intrusion.sh)
+[script](https://github.com/Maciferna/DockerLabs/blob/main/maquina-anonymouspingu/scripts/intrusion.sh)
