@@ -72,41 +72,7 @@ Ahora que ya obtuvimos algo de información, podemos ir a el navegador y entrar 
 
 ![80](./img/80.png)
 
-Como vemos es una página que no tiene mucha importancia pero tiene un panel de login, por lo que luego de intentar varias cosas como "SQLi" y demás pero nada servia, prácticamente llegando a la locura se me ocurre ver si alguna palabra de la página de inicio es la contraseña, por lo que le pregunto a chatGPT y me dice esto:
-
-~~~css
-Para extraer todas las palabras de una página web y guardarlas en un diccionario, puedes utilizar **CeWL** (Custom Word List Generator). Esta herramienta está disponible tanto en Kali Linux como en Parrot Security OS y se utiliza para generar listas de palabras personalizadas a partir del contenido de sitios web, lo cual es muy útil para ataques de fuerza bruta o ataques de diccionario.
-
-### Uso de CeWL
-
-1. **Instalar CeWL** (si no está instalado por defecto):
-   ```bash
-   sudo apt-get install cewl
-   ```
-
-2. **Ejecutar CeWL** para extraer palabras de una página web:
-   ```bash
-   cewl -w diccionario.txt http://example.com
-   ```
-
-   - `-w diccionario.txt` especifica el archivo donde se guardarán las palabras extraídas.
-   - `http://example.com` es la URL de la página web de la cual quieres extraer las palabras.
-
-3. **Opciones adicionales** de CeWL:
-   - `-d [depth]` para especificar la profundidad de búsqueda.
-   - `-m [min_length]` para establecer la longitud mínima de las palabras.
-   - `-o` para incluir los metadatos de la página.
-
-### Ejemplo de uso avanzado
-Extraer palabras con una longitud mínima de 5 caracteres, a una profundidad de 2 niveles, y guardarlas en un archivo llamado `mi_diccionario.txt`:
-```bash
-cewl -d 2 -m 5 -w mi_diccionario.txt http://example.com
-```
-
-Esta herramienta es muy flexible y puedes ajustar las opciones según tus necesidades específicas para generar un diccionario adecuado para tus propósitos.
-~~~
-
-ahora intentamos usar ese "cewl" y guardarnos las cosas:
+Como vemos es una página que no tiene mucha importancia pero tiene un panel de login, por lo que luego de probar, intento usar `cewl` para obtener las palabras de la página y guardárnoslas para usarlas con hydra :
 
 ```css
 cewl http://<ip> > pass
@@ -120,7 +86,7 @@ hydra -l medusa -P pass <ip> http-post-form "/login.php:username=medusa&password
 
 ![hydra](./img/hydra.png)
 
-Como vemos ya tenemos la contraseña. (demasiado rebuscado)
+Como vemos ya tenemos la contraseña.
 
 Una vez iniciada la sesión veremos otra página inutil, pero al ver el codigo fuente se ve este mensaje:
 
@@ -130,17 +96,19 @@ Una vez iniciada la sesión veremos otra página inutil, pero al ver el codigo f
 
 parece que hay otro usuario llamado "kinder"
 
-Ahora otra vez descendiendo a la locura, pruebo con el diccionario de antes:
+Probamos con el diccionario de antes:
 
 ```css
 hydra -l kinder -P pass ssh://172.17.0.2
 ```
 
-y como tampoco funciona, pruebo ya por probar lo que sea usar de contraseña "medusa" y finalmente gano acceso con las credenciales:
+pero esto tampoco funciona, por lo que se me ocurre probar la contraseña "medusa" y gano acceso
 
-#### Kinder:medusa
+### Credenciales:
 
-(y mas encima con la k en mayúsculas).
+`Kinder:medusa`
+
+(con la "k" en mayusculas)
 
 # INTRUSION
 
