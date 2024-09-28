@@ -48,4 +48,5 @@ elif [ "$decision" == "n" ]; then
   exit 0
 else
   echo -e "[-] ${rojo}Opción incorrecta... Saliendo.... ${reset}"
+  exit 1
 fi
