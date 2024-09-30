@@ -1,4 +1,4 @@
-
+NO SIGAS ESTE WRITEUP, LA MÁQUINA FUE ACTUALIZADA Y YA NO ES IGUAL, PERO COMO LA ACTUALIZACIÓN SALIÓ MAL, TENGO QUE ARREGLAR LA MÁQUINA Y EL WRITEUP (ambos en progreso) 
 
 ## Maquina CorrupTess de [Dockerlabs](https://dockerlabs.es)
 
