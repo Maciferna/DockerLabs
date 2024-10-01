@@ -8,7 +8,7 @@ cyan='\033[1;36m'
 reset='\033[0m'
 verde='\033[1;32m'
 
-
+echoe -e "${rojo}Creditos a: https://github.com/jmrcsnchz/ClinicQueueingSystem_RCE${reset}"
 echo -e "${rojo}Instagram: macim0_${reset}"
 
 
