@@ -48,3 +48,6 @@ stty rows 36 cols 131
 ```
 
 Esto va a ajustar las filas y columnas del terminal para que tenga el correcto tamaño (Para ver cual debes usar solo ejecuta `stty size` en tu terminal normal).
+
+PD:
+Algunas veces debes ejecutar `export TERM=xterm` y `export SHELL=bash` antes que `script /dev/null -c bash`, pero solo algunas veces
