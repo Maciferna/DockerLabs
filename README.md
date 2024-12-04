@@ -1,35 +1,26 @@
-Solo subo mis writeups de algunas maquinas de [DockerLabs](https://dockerlabs.es)
+---
+description: Quien soy?
+---
 
-¿Como desplegar las maquinas?
+# 🖥️ Whoami
 
- Primero hay que descomprimir el `.zip` con la maquina, para hacerlo solo debemos instalar `zip` con apt y luego ejecutar el comando.
+Hola 👋
 
-```css
-sudo apt install zip
-```
+Soy alguien a quien le apasiona la ciberseguridad y el hacking. Estoy aprendiendo constantemente con la meta de algún día poder trabajar en este ámbito, haciendo lo que realmente me gusta.
 
-para descomprimir:
+En este espacio encontrarás:
 
-```css
-unzip <maquina>.zip
-```
+* **Writeups** de CTFs que he resuelto.
+* Algunos recursos y cosas interesantes relacionadas al tema.
 
-Esto nos dejará *dos archivos*, `auto_deploy.sh` y la maquina como tal en un `.tar`. Una vez hecho eso solo ejecutamos:
+Acepto cualquier crítica o comentario. Si algo te parece bien o mal, o tienes alguna sugerencia, soy todo oídos.
 
-```css
-sudo bash auto_deploy.sh <maquina>.tar
-```
+#### Contacto
 
+Si te interesa seguir más de cerca lo que hago, aquí están mis redes:
 
-Para confirmar que esta desplegada:
+* **YouTube**: [maciferna](https://youtube.com/@maciferna)
+* **Instagram**: [macim0\_](https://instagram.com/macim0_)
+* **GitHub**: [maciferna](https://github.com/maciferna)
 
-```css
-ping 172.17.0.2 #o la ip que nos den
-```
-
-
-[ElPingüinoDeMario](https://youtube.com/@ElPinguinoDeMario)
-
-
-Mi Instagram: [macim0_](https://instagram.com/macim0_)
-
+Gracias por pasarte por aquí.
