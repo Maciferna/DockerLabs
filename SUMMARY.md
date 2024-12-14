@@ -42,6 +42,7 @@
   * [Sites](writeups/dockerlabs/Sites.md)
   * [Stellarjwt](writeups/dockerlabs/Stellarjwt.md)
   * [Stranger](writeups/dockerlabs/Stranger.md)
+  * [UserSearch](writeups/dockerlabs/UserSearch.md)
   * [Vulnvault](writeups/dockerlabs/Vulnvault.md)
   * [Vulnerame](writeups/dockerlabs/Vulnerame.md)
   * [Winterfell](writeups/dockerlabs/Winterfell.md)
