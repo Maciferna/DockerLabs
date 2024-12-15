@@ -25,6 +25,7 @@
   * [Findyourstyle](writeups/dockerlabs/Findyourstyle.md)
   * [Forgotten\_Portal](writeups/dockerlabs/Forgotten_portal.md)
   * [Hackmedaddy](writeups/dockerlabs/Hackmedaddy.md)
+  * [Hidden](writeups/dockerlabs/Hidden.md)
   * [Inj3ct0rss](writeups/dockerlabs/Inj3ct0rss.md)
   * [Injection](writeups/dockerlabs/Injection.md)
   * [Jenkhack](writeups/dockerlabs/Jenkhack.md)
