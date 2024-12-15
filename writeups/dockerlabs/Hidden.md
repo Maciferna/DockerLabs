@@ -119,6 +119,7 @@ sudo apt install xclip && cat /user/share/wordlist/rockyou.txt | head -n 500 | x
 ```
 
 esto lo que hará, sera instalar `xclip` si no lo tenemos, y luego copiar las primeras 500 lineas del rockyou (esa ruta es para kali linux, se debe cambiar en caso que no esté ahi), luego volvemos a la maquina y creamos la wordlist con las contraseñas. Una vez ejecutado el script, veremos lo siguiente:
+
 ![Cafetero-pass](/maquina-hidden/img/cafetero.png)
 
 (si no funciona, se debe cambiar la linea del script que dice `if timeout 0.073` por `if timeout 0.1`)
