@@ -47,4 +47,5 @@
   * [UserSearch](writeups/dockerlabs/UserSearch.md)
   * [Vulnvault](writeups/dockerlabs/Vulnvault.md)
   * [Vulnerame](writeups/dockerlabs/Vulnerame.md)
+  * [Wallet](writeups/dockerlabs/Wallet.md)
   * [Winterfell](writeups/dockerlabs/Winterfell.md)
