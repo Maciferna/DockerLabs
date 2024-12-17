@@ -17,7 +17,7 @@ Acepto cualquier crítica o comentario. Si algo te parece bien o mal, o tienes a
 
 #### Contacto
 
-Si te interesa seguir más de cerca lo que hago, aquí están mis redes:
+Mis redes sociales:
 
 * **YouTube**: [maciferna](https://youtube.com/@maciferna)
 * **Instagram**: [macim0\_](https://instagram.com/macim0_)

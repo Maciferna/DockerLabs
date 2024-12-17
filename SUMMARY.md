@@ -19,6 +19,7 @@
   * [Corruptress](writeups/dockerlabs/Corruptress.md)
   * [Crackoff](writeups/dockerlabs/Crackoff.md)
   * [Dance-Samba](writeups/dockerlabs/Dance-samba.md)
+  * [Darkweb](writeups/dockerlabs/Darkweb.md)
   * [Debugme](writeups/dockerlabs/Debugme.md)
   * [Devil](writeups/dockerlabs/Devil.md)
   * [Devtools](writeups/dockerlabs/Devtools.md)
